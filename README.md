@@ -4,6 +4,10 @@ searching the library it allows for frictionless usage and supports
 last.fm (or similar) integration by scrobbling and queuing similar
 songs.
 
+## Demo
+
+https://github.com/user-attachments/assets/00776d83-b093-45d3-8ee6-2f3fad405136
+
 ## Installation
 The `ffmpeg` tool needs to be installed for rmp to work.
 
