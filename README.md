@@ -9,7 +9,7 @@ likely work with other Unix-like operating systems.
 
 ## Demo
 
-https://github.com/user-attachments/assets/00776d83-b093-45d3-8ee6-2f3fad405136
+https://github.com/user-attachments/assets/f368219f-7b67-4594-8bda-12a80ead5355
 
 ## Installation
 The `ffmpeg` tool needs to be installed for rmp to work. When not using Linux,
