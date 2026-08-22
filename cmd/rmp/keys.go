@@ -209,6 +209,10 @@ func handleKey(ev *tcell.EventKey, state *uiState) {
 			handleQueueUp(ev.Modifiers()&tcell.ModAlt != 0, state)
 		case "j":
 			handleQueueDown(ev.Modifiers()&tcell.ModAlt != 0, state)
+		case "K":
+			handleQueueUp(true, state)
+		case "J":
+			handleQueueDown(true, state)
 		case "d":
 			s := state.queueSelection
 			if s < len(state.queue) {
