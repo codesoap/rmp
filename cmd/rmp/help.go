@@ -53,10 +53,9 @@ func drawHelp(state uiState) {
 	x1 := x0 + boxW - 1
 	y1 := y0 + boxH - 1
 	drawBox(state.s, x0, y0, x1, y1)
-	from := min(state.helpScroll, len(longHelpText)-(boxH-2))
 	var i int
 	var line string
-	for i, line = range longHelpText[from:] {
+	for i, line = range longHelpText {
 		if y0+i+2 > y1 {
 			break
 		}

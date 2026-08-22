@@ -22,24 +22,6 @@ func handleErrorKey(ev *tcell.EventKey, state *uiState) {
 	}
 }
 
-func handleHelpKey(ev *tcell.EventKey, state *uiState) {
-	switch ev.Key() {
-	case tcell.KeyEscape:
-		state.helpShown = false
-		state.helpScroll = 0
-		draw(*state)
-	case tcell.KeyUp:
-		state.helpScroll = max(state.helpScroll-1, 0)
-		draw(*state)
-	case tcell.KeyDown:
-		_, h := state.s.Size()
-		availableHeight := h - 4 // One padding and border line on each side.
-		maxScroll := max(len(helpText)+3-availableHeight, 0)
-		state.helpScroll = min(state.helpScroll+1, maxScroll)
-		draw(*state)
-	}
-}
-
 func handleLoadingSimilarKey(ev *tcell.EventKey, state *uiState) {
 	switch ev.Key() {
 	case tcell.KeyEscape:

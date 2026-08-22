@@ -18,8 +18,7 @@ type uiState struct {
 	s      tcell.Screen
 	events chan event
 
-	helpShown  bool
-	helpScroll int
+	helpShown bool
 
 	allSongs                []song.Song
 	searchShown             bool
@@ -140,11 +139,13 @@ func handleTcellEvent(state *uiState, ev tcell.Event) {
 		state.s.Sync()
 		draw(*state)
 	case *tcell.EventKey:
+		if state.helpShown {
+			state.helpShown = false
+			draw(*state)
+		}
 		switch {
 		case state.error != "":
 			handleErrorKey(ev, state)
-		case state.helpShown:
-			handleHelpKey(ev, state)
 		case state.loadingSimilar:
 			handleLoadingSimilarKey(ev, state)
 		case state.searchShown:
