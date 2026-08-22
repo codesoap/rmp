@@ -24,6 +24,15 @@ func draw(state uiState) {
 	}
 	drawModes(state)
 	drawQueue(state)
+	if len(state.queue) == 0 {
+		x := max(0, w/2-11)
+		y := max(0, h/2-1)
+		style := tcell.StyleDefault.Foreground(color.DimGray)
+		state.s.PutStrStyled(x, y, "Press q to quit.", style)
+		state.s.PutStrStyled(x, y+1, "Press / to queue songs.", style)
+		state.s.PutStrStyled(x, y+2, "Press ? for more info.", style)
+
+	}
 	if state.helpShown {
 		drawHelp(state)
 	}
@@ -50,10 +59,12 @@ func draw(state uiState) {
 		x0 := (w - boxW) / 2
 		y0 := (h - boxH) / 2
 		x1 := x0 + boxW - 1
-		y1 := y0 + boxH - 1
+		y1 := y0 + boxH
 		drawBox(state.s, x0, y0, x1, y1)
 		style := tcell.StyleDefault.Foreground(color.Red)
 		state.s.PutStrStyled(x0+2, y0+1, text, style)
+		style = tcell.StyleDefault.Foreground(color.DimGray)
+		state.s.PutStrStyled(x0+2, y0+2, "Press esc to close.", style)
 	}
 	state.s.Show()
 }

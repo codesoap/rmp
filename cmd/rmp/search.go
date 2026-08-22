@@ -11,6 +11,7 @@ import (
 	"github.com/codesoap/rmp/internal/library"
 	"github.com/codesoap/rmp/internal/song"
 	"github.com/gdamore/tcell/v3"
+	"github.com/gdamore/tcell/v3/color"
 
 	"github.com/junegunn/fzf/src/algo"
 	"github.com/junegunn/fzf/src/util"
@@ -107,11 +108,20 @@ func drawSearch(state uiState) {
 	y1 := y0 + boxH - 1
 	drawSearchBox(state.s, x0, y0, x1, y1)
 
-	// FIXME: Show end of line when longer than input field.
-	searchLine := displaywidth.TruncateString(state.searchFilter, boxW-5, "")
-	state.s.PutStr(x0+2, y0+1, searchLine)
-	style := tcell.StyleDefault.Reverse(true)
-	state.s.PutStrStyled(x0+2+displaywidth.String(searchLine), y0+1, " ", style)
+	if state.searchFilter == "" {
+		help := "enter fuzzy search... (queue with enter, multi select with tab)"
+		style := tcell.StyleDefault.Foreground(color.DimGray)
+		searchLine := displaywidth.TruncateString(help, boxW-4, "")
+		state.s.PutStrStyled(x0+2, y0+1, searchLine, style)
+		style = tcell.StyleDefault.Reverse(true)
+		state.s.PutStrStyled(x0+2, y0+1, "e", style)
+	} else {
+		// FIXME: Show end of line when longer than input field.
+		searchLine := displaywidth.TruncateString(state.searchFilter, boxW-5, "")
+		state.s.PutStr(x0+2, y0+1, searchLine)
+		style := tcell.StyleDefault.Reverse(true)
+		state.s.PutStrStyled(x0+2+displaywidth.String(searchLine), y0+1, " ", style)
+	}
 
 	from := 0
 	selectionH := boxH - 4
