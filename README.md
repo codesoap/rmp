@@ -9,11 +9,15 @@ songs.
 https://github.com/user-attachments/assets/00776d83-b093-45d3-8ee6-2f3fad405136
 
 ## Installation
-The `ffmpeg` tool needs to be installed for rmp to work.
+The `ffmpeg` tool needs to be installed for rmp to work. When not using Linux,
+you might also have to install pulseaudio.
 
 You can download precompiled binaries from the [releases
-page](https://github.com/codesoap/rmp/releases) or install it with `go
-install github.com/codesoap/rmp/cmd/rmp@latest`.
+page](https://github.com/codesoap/rmp/releases) or install it from source:
+
+```
+go install github.com/codesoap/rmp/cmd/rmp@latest
+```
 
 ## Usage
 ```console
