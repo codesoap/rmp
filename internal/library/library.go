@@ -112,6 +112,8 @@ func FetchSimilarSongs(ctx context.Context, cfg config.Config, songID string) ([
 	} else if resp.SubsonicResponse.Status != "ok" {
 		return nil, fmt.Errorf("could not read similar songs; status is '%s'",
 			resp.SubsonicResponse.Status)
+	} else if len(resp.SubsonicResponse.SimilarSongs.Song) == 0 {
+		return nil, fmt.Errorf("no similar songs found")
 	}
 	return resp.SubsonicResponse.SimilarSongs.Song, nil
 }
