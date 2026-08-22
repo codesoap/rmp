@@ -1,8 +1,7 @@
 # Richard's Music Player
-rmp is a minimal OpenSubsonic terminal music player. Through fuzzy
-searching the library it allows for frictionless usage and supports
-last.fm (or similar) integration by scrobbling and queuing similar
-songs.
+rmp is a minimal OpenSubsonic terminal music player. It can rapidly
+create custom queues by fuzzy searching the whole library and providing
+suggestions (through services like last.fm).
 
 It works best on Linux, but has also been tested on OpenBSD and will
 likely work with other Unix-like operating systems.
