@@ -1,9 +1,13 @@
 package main
 
 import (
+	"regexp"
+
 	"github.com/codesoap/rmp/internal/playercom"
 	"github.com/gdamore/tcell/v3"
 )
+
+var reURL = regexp.MustCompile(`"(http[^"]{0,40})([^"]*)"`)
 
 func drawBox(s tcell.Screen, x0, y0, x1, y1 int) {
 	for x := x0 + 1; x <= x1; x++ {
@@ -84,4 +88,12 @@ func setNextIfPresent(state *uiState) bool {
 		}
 	}
 	return true
+}
+
+func shortenURL(u string) string {
+	sm := reURL.FindStringSubmatch(u)
+	if len(sm) == 3 && len(sm[2]) > 1 {
+		return reURL.ReplaceAllString(u, `"$1…"`)
+	}
+	return u
 }

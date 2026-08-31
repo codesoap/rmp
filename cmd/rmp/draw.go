@@ -53,6 +53,7 @@ func draw(state uiState) {
 	}
 	if state.error != "" {
 		text := "Error: " + state.error
+		text = shortenURL(text)
 		text = displaywidth.TruncateString(text, w-6, "…")
 		boxW := len(text) + 4 // padding
 		boxH := 3
