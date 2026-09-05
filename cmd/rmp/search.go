@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"math/rand/v2"
 	"sort"
 	"strings"
 	"time"
@@ -76,12 +77,19 @@ func fuzzySorted(pattern string, songs []song.Song) []song.Song {
 		}
 	}
 
-	sort.SliceStable(results, func(i, j int) bool {
-		if results[i].score != results[j].score {
-			return results[i].score > results[j].score
-		}
-		return results[i].song.String() < results[j].song.String()
-	})
+	if pattern == "" {
+		// Without a search term, shuffle to encourage exploration:
+		rand.Shuffle(len(results), func(i, j int) {
+			results[i], results[j] = results[j], results[i]
+		})
+	} else {
+		sort.SliceStable(results, func(i, j int) bool {
+			if results[i].score != results[j].score {
+				return results[i].score > results[j].score
+			}
+			return results[i].song.String() < results[j].song.String()
+		})
+	}
 
 	ret := make([]song.Song, len(results))
 	for i, rs := range results {
