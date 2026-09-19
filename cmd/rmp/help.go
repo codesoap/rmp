@@ -46,10 +46,10 @@ func drawHelp(state uiState) {
 	longHelpText := append(helpText, "", cacheInfo1, cacheInfo2)
 
 	w, h := state.s.Size()
-	boxW := min(w-2, max(64, displaywidth.String(cacheInfo1)))
-	boxH := min(h-2, len(longHelpText)+2)
-	x0 := (w - boxW) / 2
-	y0 := (h - boxH) / 2
+	boxW := max(64, displaywidth.String(cacheInfo1))
+	boxH := len(longHelpText) + 2
+	x0 := max(1, (w-boxW)/2)
+	y0 := max(1, (h-boxH)/2)
 	x1 := x0 + boxW - 1
 	y1 := y0 + boxH - 1
 	drawBox(state.s, x0, y0, x1, y1)
